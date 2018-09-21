@@ -5,6 +5,11 @@ let values = ['Ace','King','Queen','Jack',
       'Ten', 'Nine', 'Eight', 'Seven', 'Six',
       'Five','Four', 'Three', 'Two'];
 
+let textArea = document.getElementById('text-area');
+let newGameButton = document.getElementById('new-game-button');
+let hitButton = document.getElementById('hit-button');
+let stayButton = document.getElementById('stay-button');
+
 function createDeck() {
   let deck = [];
   for(let suitIdx = 0; suitIdx < suits.length; suitIdx++) {
@@ -15,12 +20,20 @@ function createDeck() {
         };
          deck.push(card); 
       }
-     
     }
-    
     return deck;
   }
 
+hitButton.style.display = 'none';
+stayButton.style.display = 'none';
+
+newGameButton.addEventListener('click', function(){
+  textArea.innerText= 'Started...';
+  newGameButton.style.display = 'none';
+  
+  hitButton.style.display = 'inline';
+  stayButton.style.display = 'inline';
+});
 
 let deck = createDeck();
 
@@ -32,9 +45,8 @@ function  getCardString(card) {
   return card.value + ' of  ' + card.suit;
   
 }
-//for(let i = 0; i < deck.length;  i++ ) {
-  //console.log(deck[i]);
-//}
+
+
 
 let playerCards = [ getNextCard() ,  getNextCard() ];
 console.log("Welcome to Blackjack!");
